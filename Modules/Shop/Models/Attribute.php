@@ -9,7 +9,7 @@ use Modules\Shop\Database\Factories\AttributFactory;
 
 // use Modules\Shop\Database\Factories\AttributFactory;
 
-class Attribut extends Model
+class Attribute extends Model
 {
     use HasFactory, UuidTrait;
 
