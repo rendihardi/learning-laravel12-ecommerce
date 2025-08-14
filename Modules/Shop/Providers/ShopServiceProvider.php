@@ -4,6 +4,8 @@ namespace Modules\Shop\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Shop\Repositories\Front\Interface\ProductRepositoryInterface;
+use Modules\Shop\Repositories\Front\ProductRepository;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -27,6 +29,7 @@ class ShopServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+        $this->registerRepositories();
     }
 
     /**
@@ -150,5 +153,10 @@ class ShopServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+
+    private function registerRepositories(): void
+    {
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 }

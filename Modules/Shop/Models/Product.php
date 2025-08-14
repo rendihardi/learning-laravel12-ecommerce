@@ -97,4 +97,9 @@ class Product extends Model
 	{
 		return $this->hasMany('Modules\Shop\Models\ProductImage', 'product_id');
 	}
+
+    public function getPriceLabelAttribute()
+    {
+        return number_format($this->price);
+    }
 }
